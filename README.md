@@ -1,1 +1,1 @@
-# PrashilProject
+# CSCI2270FinalProject
