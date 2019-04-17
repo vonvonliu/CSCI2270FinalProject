@@ -1,0 +1,46 @@
+Bangladesh,Dhaka,8th,10th,Bengali,Bengalis,Islam* and Hinduism,Taka
+India,Indonesia,Malaysia,Myanmar,Sri Lanka
+Bhutan,Thimphu,165th,196th,Dzongkha (Sino-Tibetan language),Western Bhutanese (Ngalops) and Eastern Bhutanese (Sharchops),Buddhism* and Hinduism,Ngultrum
+China,India
+Brunei,Bandar Seri Bndegawan,175th,134th,Malay and English,Malay & Chinese & others,Sunni Islam,Brunei Dollar
+China,Malaysia,Philippines,Singapore,Taiwan,Thailand,Vietnam
+Cambodia,Phnom Penh,72nd,118th,Khmer,Khmer* and Chams,Buddhism* and Islam,Riel
+Indonesia,Laos,Malaysia,Singapore,Thailand,Vietnam
+China,Beijing,1st,83rd,Standard Chinese & Mongolian & more,Han* and 55 minorities,Non-religions or Chinese Folk** and Buddhism,Renminbi
+Bhutan,Brunei,India,Indonesia,Japan,Laos,Malaysia,Mongolia,Myanmar,Nepal,North Korean,Philippines,Singapore,South Korea,Taiwan,Vietnam
+East Timor,Dili,156th,120th,Portuguese & Tetum,Tetum and Mambai (Malayo-Polynesian groups),Roman Catholic* and Protestant,United States Dollar
+Indonesia
+India,New Delhi,2nd,31st,Hindi & English,many different tribal groups,Hinduism and Islam,Rupees
+Bangladesh,Bhutan,China,Indonesia,Malaysia,Maldives,Myanmar,Nepal,Sri Lanka,Thailand
+Indonesia,Jakarta,4th,88th,Indonesian,Javanese and over 400 others,Islam** and Christianity,Rupiah
+Bangladesh,Cambodia,East-Timor,India,Malaysia,Maldives,Myanmar,Philippines,Singapore,Sri Lanka,Thailand,Vietnam
+Japan,Tokyo,10th,41st,Japanese,Japanese,Shintoism or none and Buddhism,Yen
+Brunei,China,Indonesia,North Korea,Philippines,South Korea,Taiwan,Vietnam
+Laos,Vientiane,104th,117th,Lao & French,Buddhism** and Laotian Folk Religions,Kip
+Cambodia,China,Myanmar,Thailand,Vietnam
+Malaysia,Kuala Lumpur,44th,116th,Malaysian,Malay & other indigenous peoples** & Chinese,Islam** and Christianity,Ringgit
+Bangladesh,Brunei,Cambodia,China,India,Indonesia,Maldives,Philippines,Singapore,Sri Lanka,Taiwan,Thailand,Vietnam
+Maldives,Malé,175th,11th,Dhivehi (Indo-Aryan language),about 100% Maldivians,Islam (mandated by law),Maldivian Rufiyaa
+India,Myanmar,Sri Lanka,Thailand
+Mongolia,Ulaanbaatar,134th,238th,Mongolian,Mongolian* and Khazaks,Buddhism and Non-Religious,Tögrög
+China
+Myanmar,Naypyidaw,25th,125th,Burmese,Bamar and others,Buddhism,Kyat
+Bangladesh,China,India,Indonesia,Laos,Maldives,Sri Lanka,Thailand
+Nepal,Kathmandu,48th,62nd,Nepali and others (including English),very diverse with main one being Chhetri/ Khas,Hinduism* and Buddhism,Nepalese rupee
+China,India,
+North Korea,Pyongyang,52nd,65th,Korean,Koreans,irreligious**,Korean People’s Won
+China,Japan,South Korea,Taiwan
+Philippines,Manila,13th,47th,Filipino & English,Visayan & Tagalog & others,Catholic*,Philippine Peso
+Brunei,China,Indonesia,Japan,Malaysia,Singapore,South Korea,Taiwan,Thailand,Vietnam
+Singapore,Singapore (city-state),113rd,3rd,English & Chinese & Malay & Tamil,Chinese** & Malay & Indian,Buddhism and Christianity,Singapore Dollar
+Brunei,Cambodia,China,Indonesia,Malaysia,Philippines
+South Korea,Seoul,27th,23rd,Korean and Korean Sign Language,Koreans,Not religious** and Christianity,Korean Republic Won
+China,Japan,North Korea,Philippines,Taiwan
+Sri Lanka,Sri Jayawardenepura Kotte,57th,43rd,Sinhala and Tamil,Sinhalese**,Buddhism** and Hinduism,Sri Lankan Rupee
+Bangladesh,India,Indonesia,Malaysia,Maldives,Myanmar,Thailand
+Taiwan,Taipei,53rd,17th,Mandarin & Taiwanese Hokkien & Formosan Languages,Han*,Folk religion & Taoism & Buddhism,New Taiwanese Dollar
+Brunei,China,Japan,Malaysia,North Korea,Philippines,South Korea
+Thailand,Bangkok,20th,88th,Thai,Thai,Buddhism* and Islam,Baht
+Brunei,Cambodia,India,Indonesia,Laos,Maldives,Myanmar,Philippines,Sri Lanka,Vietnam
+Vietnam,Hanoi,15th,46th,Vietnamese,Vietnamese and 53 minorities,Folk or Irreligious** and Buddhism,Dong
+Brunei,Cambodia,China,Indonesia,Japan,Laos,Malaysia,Philippines,Thailand
