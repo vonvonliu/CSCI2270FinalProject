@@ -6,30 +6,31 @@ using namespace std;
 
 Game::Game():hashTable(23) {
   player = Player();
-  currentCountry = 0;
 }
 
 void Game::setup() {
   //display introduction
-  ifstream file_stream(".\\Texts\\Introduction.txt");
+  ifstream file_stream("Introduction.txt");
 
   if(file_stream.is_open()) {
     string line;
     while(getline(file_stream, line)) {
       cout << line << endl;
     }
+    file_stream.close();
   } else
     cout << "Cannot display introduction" << endl;
   cout << endl << endl << endl;
 
   //ask for player's name
-  file_stream.open(".\\Texts\\PlayerName.txt");
+  file_stream.open("PlayerName.txt");
 
   if(file_stream.is_open()) {
     string line;
     while(getline(file_stream, line)) {
       cout << line << endl;
     }
+    file_stream.close();
     string name;
     getline(cin, name);
     player.setName(name);
@@ -38,16 +39,20 @@ void Game::setup() {
   cout << endl << endl << endl;
 
   //load all the countries
-  hashTable.addCountriesFromFile(".\\Texts\\CountryInfo.txt");
+  hashTable.addCountriesFromFile("CountryInfo.txt");
 
   //ask for the starting country of the game
-  file_stream.open(".\\Texts\\StartCountry.txt");
+  file_stream.open("StartCountry.txt");
 
   if(file_stream.is_open()) {
     string line;
     while(getline(file_stream, line)) {
       cout << line << endl;
     }
+    hashTable.displayCountries(); //display list of countries for user to choose from
+    cout << endl;
+
+    file_stream.close();
     string name;
     //continues to ask player for a valid country name if invalid
     do {
@@ -56,16 +61,26 @@ void Game::setup() {
         cout << "Please enter a valid country name...";
     } while(!hashTable.validStartingCountry(name));
 
-    currentCountry = hashTable.getCountry(name);  //sets current country to what the player chooses
+    player.setCurrentCountry(hashTable.getCountry(name)); //sets current country to what the player chooses
 
   } else
     cout << "Cannot ask Player for starting country" << endl;
   cout << endl << endl << endl;
 }
 
+void Game::turn() {
+  cout << "You have arrived at " << player.getCurrentCountry()->info.at("name") << endl;  //display current country
+  hashTable.displayInformation(player.getCurrentCountry());
+
+  hashTable.tasks(player.getCurrentCountry());
+}
+
 void Game::game() {
   setup();
-  while(currentCountry->name != "Mal Dives") {
+  //player has not traveled to all of the countries
+  while(player.getNumCountriesVisited() < 23) {
     //execute tasks and quizes for each country
+    turn();
   }
+
 }

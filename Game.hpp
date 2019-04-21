@@ -8,9 +8,9 @@ class Game {
   private:
     HashTable hashTable;
     Player player;
-    CountryNode* currentCountry;
-    
+
     void setup();
+    void turn();
   public:
     Game();
     void game();
