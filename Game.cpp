@@ -6,6 +6,21 @@ using namespace std;
 
 Game::Game():hashTable(23) {
   player = Player();
+
+  //load clues
+  int count = 0;
+  ifstream file_stream("Clues.txt");
+
+  if(file_stream.is_open()) {
+    string line;
+    while(getline(file_stream, line)) {
+      clues[count] = line;
+      count ++;
+    }
+    file_stream.close();
+  } else
+    cout << "Cannot load clues" << endl;
+  cout << endl;
 }
 
 void Game::setup() {
@@ -20,7 +35,7 @@ void Game::setup() {
     file_stream.close();
   } else
     cout << "Cannot display introduction" << endl;
-  cout << endl << endl << endl;
+  cout << endl;
 
   //ask for player's name
   file_stream.open("PlayerName.txt");
@@ -68,11 +83,23 @@ void Game::setup() {
   cout << endl << endl << endl;
 }
 
+void Game::displayClue() {
+  cout << "You found some clue that would help you towards finding where those men have taken Chase..." << endl;
+  cout << clues[player.getNumCountriesVisited()] << endl << endl;
+}
+
 void Game::turn() {
-  cout << "You have arrived at " << player.getCurrentCountry()->info.at("name") << endl;  //display current country
+  cout << "You have arrived at " << player.getCurrentCountry()->info.at("Name") << endl;  //display current country
   hashTable.displayInformation(player.getCurrentCountry());
 
-  hashTable.tasks(player.getCurrentCountry());
+  hashTable.tasks(player.getCurrentCountry());  //tasks
+
+  hashTable.quizes(player.getCurrentCountry()); //quiz
+
+  player.setNumCountriesVisited(player.getNumCountriesVisited() + 1);  //increment number of countries visited
+
+  if(player.getNumCountriesVisited() < 23)
+    displayClue();
 }
 
 void Game::game() {
@@ -81,6 +108,7 @@ void Game::game() {
   while(player.getNumCountriesVisited() < 23) {
     //execute tasks and quizes for each country
     turn();
+    break;
   }
 
 }

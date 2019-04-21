@@ -32,7 +32,7 @@ CountryNode* HashTable::getCountry(string name) {
   int hash = getHash(name);
   CountryNode* temp = countries[hash];
   do {
-    if(temp->info.at("name") == name)
+    if(temp->info.at("Name") == name)
       return temp;
     temp = temp->next;
   } while(temp != 0);
@@ -41,7 +41,7 @@ CountryNode* HashTable::getCountry(string name) {
 }
 
 void HashTable::insertCountry(CountryNode *country) {
-  int hash = getHash(country->info.at("name"));
+  int hash = getHash(country->info.at("Name"));
   //handle collision by chaining
   if(countries[hash] == 0)
     countries[hash] = country;
@@ -55,11 +55,12 @@ void HashTable::insertCountry(CountryNode *country) {
 }
 
 void HashTable::insertTasks(CountryNode *country) {
-  string file_name = country->info.at("name") + "Tasks";
+  string file_name = country->info.at("Name") + "Tasks.txt";
   ifstream file_stream(file_name);
   if(file_stream.is_open()) {
     string line = "";
     //read in task
+
     while(getline(file_stream, line)) {
       Task task = Task();
       task.task = line;
@@ -77,7 +78,35 @@ void HashTable::insertTasks(CountryNode *country) {
     }
     file_stream.close();
   } else
-    cout << "Cannot insert tasks for " << country->info.at("name") << endl;
+    cout << "Cannot insert tasks for " << country->info.at("Name") << endl;
+  cout << endl;
+}
+
+void HashTable::insertQuiz(CountryNode *country) {
+  string file_name = country->info.at("Name") + "Quiz.txt";
+  ifstream file_stream(file_name);
+  if(file_stream.is_open()) {
+    string line = "";
+    //read in quiz
+
+    while(getline(file_stream, line)) {
+      Quiz quiz = Quiz();
+      quiz.quiz = line;
+
+      //answer to task
+      getline(file_stream, line);
+      quiz.answer = line;
+
+      //answer to task
+      getline(file_stream, line);
+      quiz.end = line;
+
+      quiz.pass = false;
+      country->quiz.push(quiz);
+    }
+    file_stream.close();
+  } else
+    cout << "Cannot insert tasks for " << country->info.at("Name") << endl;
   cout << endl;
 }
 
@@ -117,18 +146,19 @@ void HashTable::addCountriesFromFile(string file_name) {
 
       //insert CountryNode into hashTable;
       CountryNode *country = new struct CountryNode();
-      country->info.at("name") = name;
-      country->info.at("capital") = capital;
-      country->info.at("population") = population;
-      country->info.at("density") = density;
-      country->info.at("language") = language;
-      country->info.at("ethnicity") = ethnicity;
-      country->info.at("religion") = religion;
-      country->info.at("currency") = currency;
+      country->info.at("Name") = name;
+      country->info.at("Capital") = capital;
+      country->info.at("Population Ranking") = population;
+      country->info.at("Density Ranking") = density;
+      country->info.at("Official Language(s)") = language;
+      country->info.at("Dominant Ethnic Groups") = ethnicity;
+      country->info.at("Main Religion(s)") = religion;
+      country->info.at("Currency") = currency;
       country->adjacent = adjacent;
 
       insertCountry(country);
       insertTasks(country);
+      insertQuiz(country);
     }
     file_stream.close();
   } else {
@@ -140,7 +170,7 @@ bool HashTable::isVisited(string name) {
   int hash = getHash(name);
   CountryNode* temp = countries[hash];
   do {
-    if(temp->info.at("name") == name)
+    if(temp->info.at("Name") == name)
       return temp->visited;
     temp = temp->next;
   } while(temp != 0);
@@ -152,11 +182,11 @@ bool HashTable::validStartingCountry(string name) {
   int hash = getHash(name);
   //return true if there exists a country with a corresponding name
   CountryNode* temp = countries[hash];
-  do {
-    if(temp->info.at("name") == name)
+  while(temp != 0) {
+    if(temp->info.at("Name") == name)
       return true;
     temp = temp->next;
-  } while(temp != 0);
+  }
 
   return false;
 }
@@ -177,7 +207,7 @@ void HashTable::displayCountries() {
   for(int i = 0; i < hashTableSize; i ++) {
     CountryNode* temp = countries[i];
     while(temp != 0) {
-      cout << count << ". " << temp->info.at("name") << endl;
+      cout << count << ". " << temp->info.at("Name") << endl;
       temp = temp->next;
       count ++;
     }
@@ -186,22 +216,103 @@ void HashTable::displayCountries() {
 
 void HashTable::displayInformation(CountryNode* country) {
   //display information of given country
-  for(auto info = country->info.begin(); info != country->info.end(); ++info) {
-    cout << info->first << ": " << info->second << endl;
+  for(auto info = country->info.begin(); info != country->info.end(); info ++) {
+    if(info->first != "Name")
+      cout << info->first << ": " << info->second << endl;
   }
   cout << endl;
 }
 
-void HashTable::performTask(CountryNode* country) {
-  while(!country->tasks.front().pass) { //while player has not passed the current task
-    
+bool HashTable::correctAnswer(string playerAnswer, string correctAnswer) {
+  if(playerAnswer.length() < correctAnswer.length() - 1)  //player's answer cannot be right
+    return false;
+  for(int i = 0; i <= correctAnswer.length() - playerAnswer.length(); i ++) {
+    if(playerAnswer == correctAnswer.substr(i, playerAnswer.length()))
+      return true;
   }
+  return false;
+}
+
+bool HashTable::validResponse(string response) {
+  return response == "Yes" || response == "yes" || response == "No" || response == "no";
+}
+
+void HashTable::performTask(CountryNode* country) {
+  string answer;
+  bool skipped = false;
+  string message = country->tasks.front().end;
+  do {
+    cout << country->tasks.front().task << endl;  //print out task
+    getline(cin, answer);
+    if(!correctAnswer(answer, country->tasks.front().answer)) {
+      cout << "Wrong answer. Try again...";
+      //asks player to skip
+      string response;
+      do {
+        cout << "Or do you want to skip and answer later? (Enter yes/no)" << endl;
+        getline(cin, response);
+      } while(!validResponse(response));
+      if(response == "Yes" || response == "yes") {
+        skipped = true;
+        skipTask(country->info.at("Name"));
+        break;
+      }
+    }
+  } while(!correctAnswer(answer, country->tasks.front().answer));
+  if(!skipped) { //print out message to player if player completes task
+    cout << message << endl;
+    country->tasks.front().pass = true;
+    country->tasks.pop();
+  }
+  cout << endl;
+}
+
+void HashTable::performQuiz(CountryNode* country) {
+  string answer;
+  bool skipped = false;
+  string message = country->quiz.front().end;
+  do {
+    cout << country->quiz.front().quiz << endl;  //print out task
+    getline(cin, answer);
+    if(!correctAnswer(answer, country->quiz.front().answer)) {
+      cout << "Wrong answer. Try again...";
+      //asks player to skip
+      string response;
+      do {
+        cout << "Or do you want to skip and answer later? (Enter yes/no)" << endl;
+        getline(cin, response);
+      } while(!validResponse(response));
+      if(response == "Yes" || response == "yes") {
+        skipped = true;
+        skipTask(country->info.at("Name"));
+        break;
+      }
+    }
+  } while(!correctAnswer(answer, country->quiz.front().answer));
+  if(!skipped) { //print out message to player if player completes task
+    cout << message << endl;
+    country->quiz.front().pass = true;
+    country->quiz.pop();
+  }
+  cout << endl;
 }
 
 void HashTable::tasks(CountryNode* country) {
-  cout << "You have a number of tasks to complete before moving onto the next country..." << endl;
+  cout << "You have a number of tasks to complete before moving on to the next country..." << endl;
   cout << "Let's begin!" << endl;
-  while(!country->tasks.empty() {
+  cout << endl;
+  while(!country->tasks.empty()) {
     performTask(country);
+  }
+  cout << "Unfortunately, Chase is not in " << country->info.at("Name") << endl;
+}
+
+void HashTable::quizes(CountryNode* country) {
+  cout << "In order to move on to the next country, you must answer correctly a set of quiz questions..." << endl;
+  cout << "Let's begin!" << endl;
+  cout << endl;
+  //asks player quiz questions
+  while(!country->quiz.empty()) {
+    performQuiz(country);
   }
 }

@@ -15,22 +15,30 @@ struct Task {
   string end;
 };
 
+struct Quiz {
+  bool pass;
+  string quiz;
+  string answer;
+  string end;
+};
+
 // a struct to store country information
 struct CountryNode
 {
   unordered_map<string, string> info = {
-    {"religion",""},
-    {"ethnicity",""},
-    {"language",""},
-    {"density",""},
-    {"population",""},
-    {"currency",""},
-    {"capital",""},
-    {"name",""}
+    {"Main Religion(s)",""},
+    {"Dominant Ethnic Groups",""},
+    {"Official Language(s)",""},
+    {"Density Ranking",""},
+    {"Population Ranking",""},
+    {"Currency",""},
+    {"Capital",""},
+    {"Name",""}
   };
 
   vector<string> adjacent;
   queue<Task> tasks;
+  queue<Quiz> quiz;
 
   bool visited;
 
@@ -49,7 +57,11 @@ class HashTable {
     unsigned int getHash(string);
     void insertCountry(CountryNode*);
     void insertTasks(CountryNode*);
+    void insertQuiz(CountryNode*);
     void performTask(CountryNode*);
+    void performQuiz(CountryNode*);
+    bool correctAnswer(string, string);
+    bool validResponse(string);
   public:
     HashTable(int);
     ~HashTable();
@@ -61,5 +73,6 @@ class HashTable {
     void displayCountries();
     void displayInformation(CountryNode*);
     void tasks(CountryNode*);
+    void quizes(CountryNode*);
 };
 #endif
