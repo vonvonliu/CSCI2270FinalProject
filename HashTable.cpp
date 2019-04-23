@@ -69,7 +69,7 @@ void HashTable::insertTasks(CountryNode *country) {
       getline(file_stream, line);
       task.answer = line;
 
-      //answer to task
+      //explanation to task
       getline(file_stream, line);
       task.end = line;
 
@@ -93,20 +93,16 @@ void HashTable::insertQuiz(CountryNode *country) {
       Quiz quiz = Quiz();
       quiz.quiz = line;
 
-      //answer to task
+      //answer to quiz
       getline(file_stream, line);
       quiz.answer = line;
-
-      //answer to task
-      getline(file_stream, line);
-      quiz.end = line;
 
       quiz.pass = false;
       country->quiz.push(quiz);
     }
     file_stream.close();
   } else
-    cout << "Cannot insert tasks for " << country->info.at("Name") << endl;
+    cout << "Cannot insert quiz for " << country->info.at("Name") << endl;
   cout << endl;
 }
 
@@ -224,8 +220,8 @@ void HashTable::displayInformation(CountryNode* country) {
 }
 
 bool HashTable::correctAnswer(string playerAnswer, string correctAnswer) {
-  if(playerAnswer.length() < correctAnswer.length() - 1)  //player's answer cannot be right
-    return false;
+  // if(playerAnswer.length() < correctAnswer.length() - 1)  //player's answer cannot be right
+  //   return false;
   for(int i = 0; i <= correctAnswer.length() - playerAnswer.length(); i ++) {
     if(playerAnswer == correctAnswer.substr(i, playerAnswer.length()))
       return true;
@@ -270,7 +266,7 @@ void HashTable::performTask(CountryNode* country) {
 void HashTable::performQuiz(CountryNode* country) {
   string answer;
   bool skipped = false;
-  string message = country->quiz.front().end;
+  string message = "Correct!";
   do {
     cout << country->quiz.front().quiz << endl;  //print out task
     getline(cin, answer);
@@ -315,4 +311,40 @@ void HashTable::quizes(CountryNode* country) {
   while(!country->quiz.empty()) {
     performQuiz(country);
   }
+  country->visited = true;  //set country to visited
+}
+
+bool HashTable::validAdjacentCountry(string name, vector<string> adj) {
+  for(int i = 0; i < adj.size(); i ++) {
+    if(adj[i] == name)
+      return true;
+  }
+  return false;
+}
+
+CountryNode* HashTable::nextCountry(CountryNode* country) {
+  cout << "Which country would you like to travel to next? (Enter one of the names from the list below)" << endl;
+  vector<string> adj;
+  int count = 1;
+  for(int i = 0; i < country->adjacent.size(); i ++) {
+    CountryNode* nextCountry = getCountry(country->adjacent[i]);
+    if(nextCountry != 0) {
+      if(!nextCountry->visited) {
+        cout << count << ". " << nextCountry->info.at("Name") << endl;
+        adj.push_back(nextCountry->info.at("Name"));
+        count ++;
+      }
+    }
+  }
+  string name;
+  //continues to ask player for a valid country name if invalid
+  do {
+    getline(cin, name);
+    if(!validStartingCountry(name))  //true if country name is not valid
+      cout << "Please enter a valid country name...";
+    else if(!validAdjacentCountry(name, adj)) //true if country has been visited
+      cout << name << " has already been visited..." << endl;
+  } while(!validStartingCountry(name) || !validAdjacentCountry(name, adj));
+
+  return getCountry(name);
 }

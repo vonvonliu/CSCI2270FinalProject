@@ -19,7 +19,6 @@ struct Quiz {
   bool pass;
   string quiz;
   string answer;
-  string end;
 };
 
 // a struct to store country information
@@ -62,6 +61,7 @@ class HashTable {
     void performQuiz(CountryNode*);
     bool correctAnswer(string, string);
     bool validResponse(string);
+    bool validAdjacentCountry(string, vector<string>);
   public:
     HashTable(int);
     ~HashTable();
@@ -74,5 +74,6 @@ class HashTable {
     void displayInformation(CountryNode*);
     void tasks(CountryNode*);
     void quizes(CountryNode*);
+    CountryNode* nextCountry(CountryNode*);
 };
 #endif

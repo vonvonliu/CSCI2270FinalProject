@@ -8,11 +8,9 @@ class Game {
   private:
     HashTable hashTable;
     Player player;
-    string clues[22];
 
     void setup();
     void turn();
-    void displayClue();
   public:
     Game();
     void game();

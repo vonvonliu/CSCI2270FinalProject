@@ -2,12 +2,12 @@ Bangladesh,Dhaka,8th,10th,Bengali,Bengalis,Islam* and Hinduism,Taka
 India,Indonesia,Malaysia,Myanmar,Sri Lanka
 Bhutan,Thimphu,165th,196th,Dzongkha (Sino-Tibetan language),Western Bhutanese (Ngalops) and Eastern Bhutanese (Sharchops),Buddhism* and Hinduism,Ngultrum
 China,India
-Brunei,Bandar Seri Begawan,175th,134th,Malay and English,Malay & Chinese & others,Sunni Islam,Brunei Dollar
+Brunei,Bandar Seri Bndegawan,175th,134th,Malay and English,Malay & Chinese & others,Sunni Islam,Brunei Dollar
 China,Malaysia,Philippines,Singapore,Taiwan,Thailand,Vietnam
 Cambodia,Phnom Penh,72nd,118th,Khmer,Khmer* and Chams,Buddhism* and Islam,Riel
 Indonesia,Laos,Malaysia,Singapore,Thailand,Vietnam
 China,Beijing,1st,83rd,Standard Chinese & Mongolian & more,Han* and 55 minorities,Non-religions or Chinese Folk** and Buddhism,Renminbi
-Bhutan,Brunei,India,Indonesia,Japan,Laos,Malaysia,Mongolia,Myanmar,Nepal,North Korean,Philippines,Singapore,South Korea,Taiwan,Vietnam
+Bhutan,Brunei,India,Indonesia,Japan,Laos,Malaysia,Mongolia,Myanmar,Nepal,North Korea,Philippines,Singapore,South Korea,Taiwan,Vietnam
 East Timor,Dili,156th,120th,Portuguese & Tetum,Tetum and Mambai (Malayo-Polynesian groups),Roman Catholic* and Protestant,United States Dollar
 Indonesia
 India,New Delhi,2nd,31st,Hindi & English,many different tribal groups,Hinduism and Islam,Rupees
