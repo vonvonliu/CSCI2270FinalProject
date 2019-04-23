@@ -2,7 +2,7 @@ Bangladesh,Dhaka,8th,10th,Bengali,Bengalis,Islam* and Hinduism,Taka
 India,Indonesia,Malaysia,Myanmar,Sri Lanka
 Bhutan,Thimphu,165th,196th,Dzongkha (Sino-Tibetan language),Western Bhutanese (Ngalops) and Eastern Bhutanese (Sharchops),Buddhism* and Hinduism,Ngultrum
 China,India
-Brunei,Bandar Seri Bndegawan,175th,134th,Malay and English,Malay & Chinese & others,Sunni Islam,Brunei Dollar
+Brunei,Bandar Seri Begawan,175th,134th,Malay and English,Malay & Chinese & others,Sunni Islam,Brunei Dollar
 China,Malaysia,Philippines,Singapore,Taiwan,Thailand,Vietnam
 Cambodia,Phnom Penh,72nd,118th,Khmer,Khmer* and Chams,Buddhism* and Islam,Riel
 Indonesia,Laos,Malaysia,Singapore,Thailand,Vietnam
