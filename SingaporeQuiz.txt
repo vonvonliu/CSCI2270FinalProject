@@ -1,6 +1,6 @@
 1. True or False- Singapore is very diverse.
-true True T t
+true/True/T/t/
 2. What is the national animal of Singapore?
-lion Lion 
+lion/Lion/
 3. True or False- Singapore is among the top five most densely populated countries.
-True true T t
+True/true/T/t/

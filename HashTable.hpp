@@ -57,6 +57,8 @@ class HashTable {
     void insertCountry(CountryNode*);
     void insertTasks(CountryNode*);
     void insertQuiz(CountryNode*);
+    void skipTask(string);
+    void skipQuiz(string);
     void performTask(CountryNode*);
     void performQuiz(CountryNode*);
     bool correctAnswer(string, string);
@@ -69,7 +71,6 @@ class HashTable {
     CountryNode* getCountry(string);
     bool isVisited(string);
     bool validStartingCountry(string);
-    void skipTask(string);
     void displayCountries();
     void displayInformation(CountryNode*);
     void tasks(CountryNode*);

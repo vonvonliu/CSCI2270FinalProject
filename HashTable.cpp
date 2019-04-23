@@ -195,6 +195,16 @@ void HashTable::skipTask(string name) {
   }
 }
 
+void HashTable::skipQuiz(string name) {
+  CountryNode* country = getCountry(name);
+
+  if(country != 0) {
+    Quiz quiz = country->quiz.front();
+    country->quiz.pop();
+    country->quiz.push(quiz);
+  }
+}
+
 void HashTable::displayCountries() {
   int count = 1;
 
@@ -218,11 +228,15 @@ void HashTable::displayInformation(CountryNode* country) {
 }
 
 bool HashTable::correctAnswer(string playerAnswer, string correctAnswer) {
-  // if(playerAnswer.length() < correctAnswer.length() - 1)  //player's answer cannot be right
-  //   return false;
+  if(playerAnswer.length() < 1) {  //player's answer cannot be right
+    return false;
+  }
+
   for(int i = 0; i <= correctAnswer.length() - playerAnswer.length(); i ++) {
-    if(playerAnswer == correctAnswer.substr(i, playerAnswer.length()))
-      return true;
+    if(playerAnswer == correctAnswer.substr(i, playerAnswer.length())) {
+      if(correctAnswer[i + playerAnswer.length()] == '/')
+        return true;
+    }
   }
   return false;
 }
@@ -278,7 +292,7 @@ void HashTable::performQuiz(CountryNode* country) {
       } while(!validResponse(response));
       if(response == "Yes" || response == "yes") {
         skipped = true;
-        skipTask(country->info.at("Name"));
+        skipQuiz(country->info.at("Name"));
         break;
       }
     }
