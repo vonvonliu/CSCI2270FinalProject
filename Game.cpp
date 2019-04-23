@@ -10,7 +10,7 @@ Game::Game():hashTable(23) {
 
 void Game::setup() {
   //display introduction
-  ifstream file_stream("Introduction.txt");
+  ifstream file_stream("BeginningOfGame.txt");
 
   if(file_stream.is_open()) {
     string line;
@@ -20,22 +20,11 @@ void Game::setup() {
     file_stream.close();
   } else
     cout << "Cannot display introduction" << endl;
-  cout << endl;
 
   //ask for player's name
-  file_stream.open("PlayerName.txt");
-
-  if(file_stream.is_open()) {
-    string line;
-    while(getline(file_stream, line)) {
-      cout << line << endl;
-    }
-    file_stream.close();
-    string name;
-    getline(cin, name);
-    player.setName(name);
-  } else
-    cout << "Cannot ask Player for name" << endl;
+  string name;
+  getline(cin, name);
+  player.setName(name);
   cout << endl << endl << endl;
 
   //load all the countries
@@ -80,7 +69,25 @@ void Game::turn() {
   player.setNumCountriesVisited(player.getNumCountriesVisited() + 1);  //increment number of countries visited
 
   //move on to next country
-  player.setCurrentCountry(hashTable.nextCountry(player.getCurrentCountry()));
+  CountryNode* nextCountry = hashTable.nextCountry(player.getCurrentCountry());
+  if(nextCountry == 0)
+    player.setNumCountriesVisited(24);
+  else
+  player.setCurrentCountry(nextCountry);
+}
+
+void Game::end() {
+  ifstream file_stream("EndOfGame.txt");
+
+  if(file_stream.is_open()) {
+    string line;
+    while(getline(file_stream, line)) {
+      cout << line << endl;
+    }
+    file_stream.close();
+  } else
+    cout << "Cannot display end game message" << endl;
+  cout << endl;
 }
 
 void Game::game() {
@@ -90,5 +97,5 @@ void Game::game() {
     //execute tasks and quizes for each country
     turn();
   }
-  cout << "You see " << endl;
+  end();
 }

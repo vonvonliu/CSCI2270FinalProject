@@ -78,8 +78,7 @@ void HashTable::insertTasks(CountryNode *country) {
     }
     file_stream.close();
   } else
-    cout << "Cannot insert tasks for " << country->info.at("Name") << endl;
-  cout << endl;
+    cout << "Cannot insert tasks for " << country->info.at("Name") << endl << endl;
 }
 
 void HashTable::insertQuiz(CountryNode *country) {
@@ -102,8 +101,7 @@ void HashTable::insertQuiz(CountryNode *country) {
     }
     file_stream.close();
   } else
-    cout << "Cannot insert quiz for " << country->info.at("Name") << endl;
-  cout << endl;
+    cout << "Cannot insert quiz for " << country->info.at("Name") << endl << endl;
 }
 
 void HashTable::addCountriesFromFile(string file_name) {
@@ -335,6 +333,11 @@ CountryNode* HashTable::nextCountry(CountryNode* country) {
         count ++;
       }
     }
+  }
+  //player can no longer move on
+  if(adj.size() == 0) {
+    cout << "You are trapped and can no longer move on to the next country.\nYou have failed to rescue Chase." << endl;
+    return 0;
   }
   string name;
   //continues to ask player for a valid country name if invalid

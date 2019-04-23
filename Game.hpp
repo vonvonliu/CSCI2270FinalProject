@@ -11,6 +11,7 @@ class Game {
 
     void setup();
     void turn();
+    void end();
   public:
     Game();
     void game();
